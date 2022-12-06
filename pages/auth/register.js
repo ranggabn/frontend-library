@@ -17,6 +17,7 @@ import { api } from "../../components/utils/api";
 import qs from "querystring";
 import { toast } from "react-toastify";
 import Router from "next/router";
+import Link from "next/link";
 
 export default function Register() {
   const [form] = Form.useForm();
@@ -258,10 +259,10 @@ export default function Register() {
           </Row>
           <Row>
             <Col className="row-index">
-              <a href="/" className="row-index a-back">
+              <Link href="/" className="row-index a-back">
                 <LeftCircleOutlined className="logo-back" />
                 Back to Home
-              </a>
+              </Link>
             </Col>
           </Row>
         </Col>
