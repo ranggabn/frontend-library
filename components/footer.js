@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Row, Col } from "react-bootstrap";
+import Link from "next/link";
 
 export default function FooterComp() {
   return (
@@ -38,22 +39,22 @@ export default function FooterComp() {
               <h4 className="mb-3">Layanan Kami</h4>
               <ul className="ml-4">
                 <li className="mb-1">
-                  <a href="/">Registrasi Anggota Baru</a>
+                  <Link href="/">Registrasi Anggota Baru</Link>
                 </li>
                 <li className="mb-1">
-                  <a href="/">Pinjaman Buku Offline</a>
+                  <Link href="/">Pinjaman Buku Offline</Link>
                 </li>
                 <li className="mb-1">
-                  <a href="/">Pinjaman Buku Online</a>
+                  <Link href="/">Pinjaman Buku Online</Link>
                 </li>
                 <li className="mb-1">
-                  <a href="/">Fotocopy</a>
+                  <Link href="/">Fotocopy</Link>
                 </li>
                 <li className="mb-1">
-                  <a href="/">Panduan Skripsi & Thesis</a>
+                  <Link href="/">Panduan Skripsi & Thesis</Link>
                 </li>
                 <li className="mb-1">
-                  <a href="/">Ruang Baca</a>
+                  <Link href="/">Ruang Baca</Link>
                 </li>
               </ul>
             </div>
@@ -61,16 +62,16 @@ export default function FooterComp() {
               <h4 className="mb-3">Tentang Kami</h4>
               <ul className="ml-4">
                 <li className="mb-2">
-                  <a href="/">Sejarah</a>
+                  <Link href="/">Sejarah</Link>
                 </li>
                 <li className="mb-2">
-                  <a href="/">Visi & Misi</a>
+                  <Link href="/">Visi & Misi</Link>
                 </li>
                 <li className="mb-2">
-                  <a href="/">Motto</a>
+                  <Link href="/">Motto</Link>
                 </li>
                 <li className="mb-2">
-                  <a href="/">Pengurus Perpustakaan</a>
+                  <Link href="/">Pengurus Perpustakaan</Link>
                 </li>
               </ul>
             </div>
@@ -78,31 +79,31 @@ export default function FooterComp() {
               <h4 className="mb-3">Sosial Media</h4>
               <Row>
                 <Col lg={2} md={3} sm={2} xs={2}>
-                  <a href="">
+                  <Link href="">
                     <img
                       src="/images/instagram.png"
                       alt="instagram"
                       className="sosmed-footer"
                     />
-                  </a>
+                  </Link>
                 </Col>
                 <Col lg={2} md={3} sm={2} xs={2}>
-                  <a href="">
+                  <Link href="">
                     <img
                       src="/images/whatsapp.png"
                       alt="whatsapp"
                       className="sosmed-footer"
                     />
-                  </a>
+                  </Link>
                 </Col>
                 <Col lg={2} md={3} sm={2} xs={2}>
-                  <a href="/">
+                  <Link href="/">
                     <img
                       src="/images/youtube.png"
                       alt="youtube"
                       className="sosmed-footer"
                     />
-                  </a>
+                  </Link>
                 </Col>
               </Row>
             </div>
