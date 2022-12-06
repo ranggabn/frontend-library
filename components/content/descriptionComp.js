@@ -9,11 +9,10 @@ import {
 } from "@ant-design/icons";
 
 export default function DescriptionComp({ data }) {
-  console.log(data);
   return (
     <>
       {data.map((data) => (
-        <Row className="mt-5">
+        <Row className="mt-5" key={data.key}>
           <Col xl={3} md={3} xs={12}>
             <Card
               className="shadow card-body-toko"

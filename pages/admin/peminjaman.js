@@ -20,7 +20,6 @@ export default function Peminjaman() {
 
   const getListPeminjam = () => {
     axios.get(api + "getListPeminjam").then((res) => {
-      console.log(res.data.data);
       setData(res.data.data);
     });
   };
