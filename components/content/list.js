@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Avatar, Divider, List, Skeleton } from "antd";
+import { Avatar, Divider, List } from "antd";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Link from "next/link";
 
 const ListComp = () => {
   const [loading, setLoading] = useState(false);
@@ -48,7 +49,7 @@ const ListComp = () => {
             <List.Item key={item.email}>
               <List.Item.Meta
                 avatar={<Avatar src={item.picture.large} />}
-                title={<a href="https://ant.design">{item.name.last}</a>}
+                title={<Link href="https://ant.design">{item.name.last}</Link>}
                 description={item.email}
               />
               <div>Content</div>

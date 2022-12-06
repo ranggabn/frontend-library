@@ -20,6 +20,7 @@ export default function Member() {
 
   const getMember = () => {
     axios.get(api + "getMember").then((res) => {
+      res.data.data.forEach((item) => (item.key = item.id));
       setData(res.data.data);
     });
   };

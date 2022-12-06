@@ -12,6 +12,7 @@ import qs from "querystring";
 import Router from "next/router";
 import { toast } from "react-toastify";
 import Cookie from "js-cookie";
+import Link from "next/link";
 
 export default function Login() {
   const [form] = Form.useForm();
@@ -118,7 +119,7 @@ export default function Login() {
               </Form.Item>
               <p>
                 Belum mendaftar sebagai anggota?{" "}
-                <a href="/auth/register">Daftar disini.</a>
+                <Link href="/auth/register">Daftar disini.</Link>
               </p>
               <Form.Item>
                 <Button type="primary" htmlType="submit" className="btn-login">
@@ -130,10 +131,10 @@ export default function Login() {
         </Row>
         <Row>
           <Col className="row-index">
-            <a href="/" className="row-index a-back">
+            <Link href="/" className="row-index a-back">
               <LeftCircleOutlined className="logo-back" />
               Back to Home
-            </a>
+            </Link>
           </Col>
         </Row>
       </Col>
