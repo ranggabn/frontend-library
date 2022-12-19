@@ -19,19 +19,19 @@ export default function FooterComp() {
                 </li>
                 <li className="text-justify mb-2">
                   <i className="fa fa-map-marker me-2"></i>
-                  Jl Bintara IX, Bekasi, Jawa Barat 60178
+                  Jl Kaliangga IX, Depok, Jawa Barat 60178
                 </li>
                 <li className="mb-2">
                   <i className="fa fa-whatsapp me-2"></i>
-                  Whatsapp. (0813) 11134200
+                  Whatsapp. (0813) 11131230
                 </li>
                 <li className="mb-2">
                   <i className="fa fa-phone me-2"></i>
-                  Telp. (0813) 11134200
+                  Telp. (0813) 11131230
                 </li>
                 <li className="mb-2">
                   <i className="fa fa-envelope me-2"></i>
-                  tamconsultl@gmail.com
+                  perpusbhataraja@gmail.com
                 </li>
               </ul>
             </div>
@@ -39,13 +39,13 @@ export default function FooterComp() {
               <h4 className="mb-3">Layanan Kami</h4>
               <ul className="ml-4">
                 <li className="mb-1">
-                  <Link href="/">Registrasi Anggota Baru</Link>
+                  <Link href="/auth/register">Registrasi Anggota Baru</Link>
                 </li>
                 <li className="mb-1">
-                  <Link href="/">Pinjaman Buku Offline</Link>
+                  <Link href="/auth/login">Pinjaman Buku Offline</Link>
                 </li>
                 <li className="mb-1">
-                  <Link href="/">Pinjaman Buku Online</Link>
+                  <Link href="/auth/login">Pinjaman Buku Online</Link>
                 </li>
                 <li className="mb-1">
                   <Link href="/">Fotocopy</Link>
@@ -62,13 +62,13 @@ export default function FooterComp() {
               <h4 className="mb-3">Tentang Kami</h4>
               <ul className="ml-4">
                 <li className="mb-2">
-                  <Link href="/">Sejarah</Link>
+                  <Link href="/user/userLibrary">Library</Link>
                 </li>
                 <li className="mb-2">
-                  <Link href="/">Visi & Misi</Link>
+                  <Link href="/user/about">About</Link>
                 </li>
                 <li className="mb-2">
-                  <Link href="/">Motto</Link>
+                  <Link href="/user/tnc">Syarat dan Ketentuan</Link>
                 </li>
                 <li className="mb-2">
                   <Link href="/">Pengurus Perpustakaan</Link>
@@ -79,7 +79,7 @@ export default function FooterComp() {
               <h4 className="mb-3">Sosial Media</h4>
               <Row>
                 <Col lg={2} md={3} sm={2} xs={2}>
-                  <Link href="">
+                  <Link href="/">
                     <img
                       src="/images/instagram.png"
                       alt="instagram"
@@ -88,7 +88,7 @@ export default function FooterComp() {
                   </Link>
                 </Col>
                 <Col lg={2} md={3} sm={2} xs={2}>
-                  <Link href="">
+                  <Link href="/">
                     <img
                       src="/images/whatsapp.png"
                       alt="whatsapp"

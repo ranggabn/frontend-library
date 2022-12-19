@@ -337,7 +337,7 @@ export default function Library(props) {
                               onClick={() => postKeranjang(book.key)}
                               disabled={book.stok ? false : true}
                             >
-                              Pinjam
+                              {book.stok ? "Pinjam" : "Habis"}
                             </Button>
                           </Card>
                         </Col>
@@ -407,7 +407,7 @@ export default function Library(props) {
                         className="btn-lanjut"
                         onClick={showConfirm}
                       >
-                        Pinjam Buku
+                        Ajukan Pinjaman
                       </Button>
                     </Container>
                   </Row>

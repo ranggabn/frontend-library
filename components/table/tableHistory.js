@@ -3,6 +3,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Space, Table } from "antd";
 import Highlighter from "react-highlight-words";
 import { Col, Row } from "react-bootstrap";
+import { convertDate } from "../utils/convertDate";
 
 export default function TableHistory({ data }) {
   const [searchText, setSearchText] = useState("");
@@ -131,24 +132,23 @@ export default function TableHistory({ data }) {
     },
     {
       title: "Tanggal Pinjam",
-      dataIndex: "insert_date",
       key: "insert_date",
       width: "10%",
-      ...getColumnSearchProps("insert_date"),
+      render: (text, record) => <p>{convertDate(record.insert_date)}</p>,
     },
     {
       title: "Tanggal Disetujui",
-      dataIndex: "tanggal_approve",
       key: "tanggal_approve",
       width: "15%",
-      ...getColumnSearchProps("tanggal_approve"),
+      render: (text, record) => <p>{convertDate(record.tanggal_approve)}</p>,
     },
     {
       title: "Tanggal Pengembalian",
-      dataIndex: "tanggal_pengembalian",
       key: "tanggal_pengembalian",
       width: "15%",
-      ...getColumnSearchProps("tanggal_pengembalian"),
+      render: (text, record) => (
+        <p>{convertDate(record.tanggal_pengembalian)}</p>
+      ),
     },
     {
       title: "Status",

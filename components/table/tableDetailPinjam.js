@@ -1,12 +1,11 @@
 import React, { useRef, useState } from "react";
 import { SearchOutlined } from "@ant-design/icons";
-import { Button, Input, Space, Table } from "antd";
+import { Badge, Button, Input, Space, Table } from "antd";
 import Highlighter from "react-highlight-words";
 import { Row } from "react-bootstrap";
-import Router from "next/router";
 import { convertDate } from "../utils/convertDate";
 
-export default function TablePeminjaman({ data }) {
+export default function TableDetailPinjam({ data, changeStatus, notAccept }) {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
@@ -20,10 +19,6 @@ export default function TablePeminjaman({ data }) {
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
-  };
-
-  const handleClick = (kode_pinjam) => {
-    Router.push("/admin/peminjaman/" + kode_pinjam);
   };
 
   const getColumnSearchProps = (dataIndex) => ({
@@ -122,51 +117,132 @@ export default function TablePeminjaman({ data }) {
 
   const columns = [
     {
-      title: "Kode Pinjam",
-      dataIndex: "kode_pinjam",
-      key: "kode_pinjam",
+      title: "Judul",
+      dataIndex: "judul",
+      key: "judul",
       width: "10%",
-      ...getColumnSearchProps("kode_pinjam"),
-    },
-    {
-      title: "Nama Lengkap",
-      dataIndex: "nama_lengkap",
-      key: "nama_lengkap",
-      width: "15%",
-      ...getColumnSearchProps("nama_lengkap"),
+      ...getColumnSearchProps("judul"),
     },
     {
       title: "Jumlah Buku",
-      dataIndex: "jumlah_pinjam",
-      key: "jumlah_pinjam",
-      width: "10%",
-      ...getColumnSearchProps("jumlah_pinjam"),
+      dataIndex: "jumlah_buku",
+      key: "jumlah_buku",
+      width: "5%",
+      ...getColumnSearchProps("jumlah_buku"),
+    },
+    {
+      title: "Stok",
+      dataIndex: "stok",
+      key: "stok",
+      width: "5%",
+      ...getColumnSearchProps("stok"),
     },
     {
       title: "Tanggal Pengajuan",
       key: "insert_date",
-      width: "15%",
+      width: "10%",
       render: (text, record) => <p>{convertDate(record.insert_date)}</p>,
     },
     {
-      title: "Nomor Telefon",
-      dataIndex: "nomor_telefon",
-      key: "nomor_telefon",
+      title: "Tanggal Approval",
+      key: "tanggal_approve",
       width: "10%",
-      ...getColumnSearchProps("nomor_telefon"),
+      render: (text, record) => <p>{convertDate(record.tanggal_approve)}</p>,
     },
     {
-      title: "Aksi",
-      key: "aksi",
+      title: "Tanggal Pengembalian",
+      key: "tanggal_pengembalian",
       width: "10%",
       render: (text, record) => (
-        <Button
-          className="btn-log"
-          style={{ color: "white" }}
-          onClick={() => handleClick(record.kode_pinjam)}
-        >
-          Detail
-        </Button>
+        <p>{convertDate(record.tanggal_pengembalian)}</p>
+      ),
+    },
+    {
+      title: "Persetujuan",
+      key: "persetujuan",
+      width: "18%",
+      render: (text, record) => (
+        <>
+          {record.status == 1 ? (
+            <>
+              <Button
+                type="primary"
+                size="large"
+                onClick={() => changeStatus(record)}
+                style={{ marginRight: "5px", width: "100px" }}
+              >
+                Setuju
+              </Button>
+              <Button
+                type="primary"
+                size="large"
+                onClick={() => notAccept(record, 7)}
+                style={{ width: "100px" }}
+                danger
+              >
+                Tolak
+              </Button>
+            </>
+          ) : (
+            <Badge
+              className="site-badge-count-109"
+              count={
+                record.status == "1"
+                  ? "Menunggu Persetujuan"
+                  : record.status == "2"
+                  ? "Disetujui"
+                  : record.status == "3"
+                  ? "Belum Diambil"
+                  : record.status == "4"
+                  ? "Diambil"
+                  : record.status == "5"
+                  ? "Dikembalikan"
+                  : record.status == "6"
+                  ? "Dibatalkan"
+                  : record.status == "7"
+                  ? "Tidak Disetujui"
+                  : ""
+              }
+              style={{
+                backgroundColor:
+                  record.status == "6" || record.status == "7"
+                    ? "#f5222d"
+                    : "#52c41a",
+              }}
+            />
+          )}
+        </>
+      ),
+    },
+    {
+      title: "Status Buku",
+      key: "status_buku",
+      width: "12%",
+      render: (text, record) => (
+        <>
+          {record.status == "3" ? (
+            <Button
+              type="primary"
+              size="large"
+              className="btn-acc"
+              onClick={() => notAccept(record, 4)}
+              style={{ marginRight: "5px" }}
+            >
+              Diambil
+            </Button>
+          ) : (
+            record.status == "4" && (
+              <Button
+                type="primary"
+                size="large"
+                onClick={() => notAccept(record, 5)}
+                style={{ marginRight: "5px" }}
+              >
+                Dikembalikan
+              </Button>
+            )
+          )}
+        </>
       ),
     },
   ];

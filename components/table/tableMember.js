@@ -3,6 +3,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Space, Table } from "antd";
 import Highlighter from "react-highlight-words";
 import { Row } from "react-bootstrap";
+import Router from "next/router";
 
 export default function TableMember({ data }) {
   const [searchText, setSearchText] = useState("");
@@ -18,6 +19,10 @@ export default function TableMember({ data }) {
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
+  };
+
+  const handleClick = (id) => {
+    Router.push("/admin/member/" + id);
   };
 
   const getColumnSearchProps = (dataIndex) => ({
@@ -154,8 +159,12 @@ export default function TableMember({ data }) {
       title: "Aksi",
       key: "aksi",
       width: "10%",
-      render: () => (
-        <Button className="btn-log" style={{ color: "white" }}>
+      render: (text, record) => (
+        <Button
+          className="btn-log"
+          style={{ color: "white" }}
+          onClick={() => handleClick(record.id)}
+        >
           Detail
         </Button>
       ),

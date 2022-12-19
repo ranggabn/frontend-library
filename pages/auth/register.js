@@ -18,7 +18,13 @@ import qs from "querystring";
 import { toast } from "react-toastify";
 import Router from "next/router";
 import Link from "next/link";
+import { unauthPage } from "../../middleware/authorizationPage";
 
+export async function getServerSideProps(ctx) {
+  await unauthPage(ctx);
+
+  return { props: {} };
+}
 export default function Register() {
   const [form] = Form.useForm();
   const [data, setData] = useState({

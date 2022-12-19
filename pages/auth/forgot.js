@@ -20,46 +20,35 @@ export async function getServerSideProps(ctx) {
 
   return { props: {} };
 }
-export default function Login() {
+export default function Forgot() {
   const [form] = Form.useForm();
   const [data, setData] = useState({
     email: "",
-    password: "",
   });
   const [message, setMessage] = useState("");
   const [error, setError] = useState(false);
 
   const handleSubmit = () => {
-    setError(false);
     const bodyRequest = {
       email: data.email,
-      password: data.password,
     };
 
-    axios
-      .post(api + "auth/api/v1/login", qs.stringify(bodyRequest))
-      .then((res) => {
-        if (res.data.status === "99") {
-          setError(true);
-          setMessage(res.data.message);
-        } else {
-          setError(false);
-          Cookie.set("id", res.data.data.id);
-          Cookie.set("role", res.data.data.role);
-          Cookie.set("token", res.data.token);
-          toast.success("Login Berhasil!", {
-            position: toast.POSITION.TOP_RIGHT,
-          });
-          form.resetFields();
-          setTimeout(() => {
-            if (res.data.data.role == "1") {
-              Router.push("/member/library");
-            } else {
-              Router.push("/admin/member");
-            }
-          }, 50);
-        }
-      });
+    axios.post(api + "postForgot", qs.stringify(bodyRequest)).then((res) => {
+      if (res.data.status == "00") {
+        setError(false);
+        form.resetFields();
+        toast.success(res.data.message, {
+          position: toast.POSITION.TOP_RIGHT,
+        });
+        setTimeout(() => {
+          Router.push("/");
+        }, 50);
+      } else {
+        form.resetFields();
+        setMessage(res.data.message);
+        setError(true);
+      }
+    });
   };
 
   const handleChange = (e) => {
@@ -68,18 +57,60 @@ export default function Login() {
     newData[e.target.name] = e.target.value;
     setData({ ...newData });
   };
-
   return (
     <Row>
       <Col className="dark-login">
         <img src="/images/login.svg" alt="" height={200} />
       </Col>
       <Col className="col-form-login">
-        <Row>
-          <img src="/images/logo.svg" alt="" height={100} />
+        <Row style={{ paddingTop: "50px" }}>
+          <Col>
+            <h3 className="text-center">
+              <b className="kasir-title">FORGOT PASSWORD</b>
+            </h3>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                marginBottom: "30px",
+              }}
+            >
+              <img src="/images/logo.svg" alt="" height={100} />
+            </div>
+          </Col>
         </Row>
         <Row className="row-form">
           <Col xl={8} md={8} xs={8}>
+            <h4>Ketentuan Lupa Password</h4>
+            <ol>
+              <li>Isi formulir dibawah ini.</li>
+              <li>
+                Hubungi pengurus perpustakaan ke nomor <b>08561231274</b>{" "}
+                (Whatsapp). Dengan format dibawah ini:
+              </li>
+            </ol>
+            <b>
+              <p style={{ marginBottom: "0px", marginLeft: "15px" }}>
+                Pengajuan Ubah Password
+              </p>
+            </b>
+            <ul className="mb-4">
+              <li>
+                Email : <i>xxxxxx@xxxx.com</i>
+              </li>
+              <li>
+                Nama Lengkap : <i>xxxxxxxxxxx</i>
+              </li>
+              <li>
+                Nomor Telefon : <i>08xxxxxxx123</i>
+              </li>
+              <li>
+                KTM :{" "}
+                <b>
+                  <i>Foto KTM anda</i>
+                </b>
+              </li>
+            </ul>
             {error && (
               <Alert message={message} type="error" showIcon className="mb-3" />
             )}
@@ -109,36 +140,9 @@ export default function Login() {
                   required
                 />
               </Form.Item>
-              <Form.Item
-                label="Password"
-                name="password"
-                rules={[
-                  {
-                    required: true,
-                    message: "Please input your password!",
-                  },
-                ]}
-              >
-                <Input.Password
-                  placeholder="Input your password"
-                  name="password"
-                  onChange={(e) => handleChange(e)}
-                  prefix={<LockOutlined />}
-                  size="large"
-                  required
-                />
-              </Form.Item>
-              <p>
-                Belum mendaftar sebagai anggota?{" "}
-                <Link href="/auth/register">Daftar disini.</Link>
-              </p>
-              <p>
-                Lupa password anda?{" "}
-                <Link href="/auth/forgot">Klik disini.</Link>
-              </p>
               <Form.Item>
                 <Button type="primary" htmlType="submit" className="btn-login">
-                  Login
+                  Submit
                 </Button>
               </Form.Item>
             </Form>
@@ -146,9 +150,9 @@ export default function Login() {
         </Row>
         <Row>
           <Col className="row-index">
-            <Link href="/" className="row-index a-back">
+            <Link href="/auth/login" className="row-index a-back">
               <LeftCircleOutlined className="logo-back" />
-              Back to Home
+              Back to Login
             </Link>
           </Col>
         </Row>

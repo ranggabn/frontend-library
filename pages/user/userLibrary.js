@@ -1,30 +1,18 @@
 import React, { useEffect, useState } from "react";
-import {
-  Row,
-  Col,
-  Container,
-  Card,
-  Button,
-  ListGroup,
-  Badge,
-} from "react-bootstrap";
-import { Pagination, Modal } from "antd";
+import { Row, Col, Container, Card, Button } from "react-bootstrap";
+import { Pagination } from "antd";
 import axios from "axios";
-import { DeleteOutlined, ExclamationCircleFilled } from "@ant-design/icons";
-import swal from "sweetalert";
 import LayoutPage from "../../components/layoutPage";
 import { api } from "../../components/utils/api";
-// import { authPage } from "../../middleware/authorizationPage";
 import FilterLibrary from "../../components/content/filterLibrary";
 import InfoCard from "../../components/content/infoCard";
+import { unauthPage } from "../../middleware/authorizationPage";
 
-const { confirm } = Modal;
+export async function getServerSideProps(ctx) {
+  await unauthPage(ctx);
 
-// export async function getServerSideProps(ctx) {
-//   const { token, id } = await authPage(ctx);
-
-//   return { props: { token, id } };
-// }
+  return { props: {} };
+}
 export default function UserLibrary() {
   const [kategori, setKategori] = useState([]);
   const [title, setTitle] = useState([]);

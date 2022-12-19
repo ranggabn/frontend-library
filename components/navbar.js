@@ -5,7 +5,7 @@ import Member from "./menu/member";
 import User from "./menu/user";
 import Admin from "./menu/admin";
 
-export default function NavbarComp({ token, role }) {
+export default function NavbarComp({ token, role, id }) {
   const handleClick = (path) => {
     Router.push(path);
   };
@@ -17,7 +17,7 @@ export default function NavbarComp({ token, role }) {
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           {token && role == "1" ? (
-            <Member handleClick={handleClick} />
+            <Member handleClick={handleClick} id={id} />
           ) : token && role == "2" ? (
             <Admin handleClick={handleClick} />
           ) : (

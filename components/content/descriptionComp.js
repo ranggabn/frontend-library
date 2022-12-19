@@ -7,6 +7,7 @@ import {
   SolutionOutlined,
   UserOutlined,
 } from "@ant-design/icons";
+import moment from "moment";
 
 export default function DescriptionComp({ data }) {
   return (
@@ -70,7 +71,7 @@ export default function DescriptionComp({ data }) {
                     {
                       title: "Diambil",
                       status:
-                        data.status == 4 && data.status == 5
+                        data.status == 4 || data.status == 5
                           ? "finish"
                           : data.status < 3
                           ? "wait"
@@ -102,17 +103,14 @@ export default function DescriptionComp({ data }) {
                   <Descriptions.Item label="Nama Peminjam" span={3}>
                     {data.nama_lengkap}
                   </Descriptions.Item>
-                  <Descriptions.Item label="Tanggal Pinjam" span={3}>
-                    {data.insert_date}
+                  <Descriptions.Item label="Tanggal Pengajuan" span={3}>
+                    {moment(data.insert_date).format("YYYY-MM-DD")}
                   </Descriptions.Item>
                   <Descriptions.Item label="Masa Pinjam">
-                    {data.tanggal_approve}
+                    {moment(data.tanggal_approve).format("YYYY-MM-DD")}
                   </Descriptions.Item>
                   <Descriptions.Item label="s/d" span={2} className="desc-sd">
-                    {data.tanggal_pengembalian}
-                  </Descriptions.Item>
-                  <Descriptions.Item label="Keterlambatan" span={3}>
-                    {data.tanggal_pengembalian - data.tanggal_approve} Hari
+                    {moment(data.tanggal_pengembalian).format("YYYY-MM-DD")}
                   </Descriptions.Item>
                   <Descriptions.Item label="Status" span={3}>
                     <Badge
@@ -120,21 +118,24 @@ export default function DescriptionComp({ data }) {
                       text={
                         data.status == 1
                           ? "Menunggu Persetujuan"
-                          : record.status == 2
+                          : data.status == 2
                           ? "Disetujui"
-                          : record.status == 3
+                          : data.status == 3
                           ? "Belum Diambil"
-                          : record.status == 4
+                          : data.status == 4
                           ? "Diambil"
-                          : record.status == 5
+                          : data.status == 5
                           ? "Dikembalikan"
-                          : record.status == 6
+                          : data.status == 6
                           ? "Dibatalkan"
-                          : record.status == 7
+                          : data.status == 7
                           ? "Tidak Disetujui"
                           : ""
                       }
                     />
+                  </Descriptions.Item>
+                  <Descriptions.Item label="Keterangan" span={3}>
+                    {data.keterangan}
                   </Descriptions.Item>
                 </Descriptions>
               </Col>

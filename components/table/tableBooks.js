@@ -3,8 +3,12 @@ import { SearchOutlined } from "@ant-design/icons";
 import { Button, Input, Space, Table } from "antd";
 import Highlighter from "react-highlight-words";
 import { Row } from "react-bootstrap";
+import axios from "axios";
+import { api } from "../utils/api";
+import swal from "sweetalert";
+import Router from "next/router";
 
-export default function TableBooks({ data }) {
+export default function TableBooks({ data, getBooks }) {
   const [searchText, setSearchText] = useState("");
   const [searchedColumn, setSearchedColumn] = useState("");
   const searchInput = useRef(null);
@@ -18,6 +22,29 @@ export default function TableBooks({ data }) {
   const handleReset = (clearFilters) => {
     clearFilters();
     setSearchText("");
+  };
+
+  const editBarang = (key) => {
+    Router.push("/admin/buku/edit/" + key);
+  };
+
+  const handleDelete = (id_buku) => {
+    axios
+      .delete(api + "deleteBook", {
+        params: {
+          id_buku: id_buku,
+        },
+      })
+      .then((res) => {
+        swal({
+          title: "BERHASIL!",
+          text: res.data.message,
+          icon: "success",
+          button: false,
+          timer: 1800,
+        });
+        getBooks();
+      });
   };
 
   const getColumnSearchProps = (dataIndex) => ({
@@ -161,11 +188,18 @@ export default function TableBooks({ data }) {
     {
       title: "Aksi",
       key: "aksi",
-      width: "5%",
-      render: () => (
+      width: "12%",
+      render: (text, record) => (
         <>
-          <Button className="btn-log" style={{ color: "white" }}>
-            Detail
+          <Button
+            className="btn-log"
+            style={{ color: "white", marginRight: "5px" }}
+            onClick={() => editBarang(record.key)}
+          >
+            Edit
+          </Button>
+          <Button onClick={() => handleDelete(record.key)} danger>
+            Delete
           </Button>
         </>
       ),

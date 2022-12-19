@@ -4,7 +4,7 @@ import Router from "next/router";
 import { toast } from "react-toastify";
 import { Button, Form, Nav } from "react-bootstrap";
 
-export default function Member({ handleClick }) {
+export default function Member({ handleClick, id }) {
   const logout = () => {
     Cookie.remove("id");
     Cookie.remove("token");
@@ -17,6 +17,10 @@ export default function Member({ handleClick }) {
     setTimeout(() => {
       Router.push("/");
     }, 50);
+  };
+
+  const toProfile = () => {
+    Router.push("/member/profil/" + id);
   };
 
   return (
@@ -32,8 +36,14 @@ export default function Member({ handleClick }) {
         <Nav.Link onClick={() => handleClick("/member/history")}>
           History
         </Nav.Link>
+        <Nav.Link onClick={() => handleClick("/member/onlineBook")}>
+          E-Book
+        </Nav.Link>
       </Nav>
       <Form className="d-flex">
+        <Button className="btn-profil" onClick={() => toProfile()}>
+          Profile
+        </Button>
         <Button className="btn-log" onClick={() => logout()}>
           Logout
         </Button>

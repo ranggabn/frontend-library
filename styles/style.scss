@@ -352,7 +352,7 @@
 }
 
 .card-image {
-  height: 200px;
+  height: 250px;
 }
 
 .btn-lanjut {
@@ -364,9 +364,30 @@
   border: none;
 }
 
+.btn-profil {
+  border-color: #ff6b43;
+  color: white;
+  background: none;
+  margin-right: 10px;
+}
+
+.btn-acc {
+  background-color: #ff6b43;
+  border: none;
+  color: white;
+}
+
 .btn-log:hover,
-.btn-log:active {
+.btn-log:active,
+.btn-acc:hover,
+.btn-acc:active {
   background-color: #e7603b !important;
+}
+
+.btn-profil:hover {
+  border-color: #e7603b;
+  color: #e7603b;
+  background: none;
 }
 
 .filter-library {
@@ -378,7 +399,7 @@
 }
 
 .card-book {
-  min-height: 450px;
+  height: 520px;
   .btn-card {
     margin: 10px !important;
     background-color: #ff6b43;
@@ -403,6 +424,12 @@
 @media (min-width: "768px") and (max-width: "991px") {
   .btn-delete {
     min-width: 100%;
+  }
+}
+
+@media (max-width: "991px") {
+  .dark-login {
+    display: none;
   }
 }
 

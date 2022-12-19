@@ -3,7 +3,13 @@ import React from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import LayoutPage from "../../components/layoutPage";
 import CountUp from "react-countup";
+import { unauthPage } from "../../middleware/authorizationPage";
 
+export async function getServerSideProps(ctx) {
+  await unauthPage(ctx);
+
+  return { props: {} };
+}
 export default function About() {
   return (
     <div className="bg-index">

@@ -7,6 +7,7 @@ import { authPage } from "../../middleware/authorizationPage";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import { PlusSquareOutlined } from "@ant-design/icons";
 import { Button } from "antd";
+import Router from "next/router";
 
 export async function getServerSideProps(ctx) {
   const { token, id } = await authPage(ctx);
@@ -24,6 +25,10 @@ export default function Books() {
     axios.get(api + "getAllBook").then((res) => {
       setData(res.data.data);
     });
+  };
+
+  const handleClick = () => {
+    Router.push("/admin/buku/new");
   };
 
   return (
@@ -50,13 +55,13 @@ export default function Books() {
             <Card style={{ padding: "20px", marginTop: "30px" }}>
               <Row className="mb-4">
                 <Col xl={12} md={12} xs={12}>
-                  <Button className="btn-add">
+                  <Button className="btn-add" onClick={handleClick}>
                     <PlusSquareOutlined />
                     Tambah Buku
                   </Button>
                 </Col>
               </Row>
-              <TableBooks data={data} />
+              <TableBooks data={data} getBooks={getBooks} />
             </Card>
           </Col>
         </Row>
