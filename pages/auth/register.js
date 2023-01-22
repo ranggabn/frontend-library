@@ -76,8 +76,13 @@ export default function Register() {
     <>
       <Row>
         <Col className="col-form-login">
-          <Row>
-            <img src="/images/logo.svg" alt="" height={100} />
+          <Row className="btn-delete">
+            <img
+              src="/images/online-logo.png"
+              alt=""
+              height={100}
+              style={{ width: "60%" }}
+            />
           </Row>
           <Row className="row-form">
             <Col xl={8} md={8} xs={8}>
@@ -222,12 +227,12 @@ export default function Register() {
                   />
                 </Form.Item>
                 <Form.Item
-                  label="Kartu Mahasiswa"
+                  label="Kartu Tanda Pengenal"
                   name="ktm"
                   rules={[
                     {
                       required: true,
-                      message: "Please upload your student card!",
+                      message: "Please upload your personal card!",
                     },
                   ]}
                 >
@@ -247,7 +252,7 @@ export default function Register() {
                         borderStyle: "dotted",
                       }}
                     >
-                      Upload Kartu Mahasiswa (JPG/PNG/JPEG)
+                      Upload Kartu Tanda Pengenal (JPG/PNG/JPEG)
                     </Button>
                   </Upload>
                 </Form.Item>

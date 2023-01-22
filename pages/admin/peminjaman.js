@@ -39,7 +39,7 @@ export default function Peminjaman() {
                 marginBottom: "30px",
               }}
             >
-              <img src="/images/logo.svg" alt="" width={200} />
+              <img src="/images/online-logo.png" alt="" width={200} />
             </div>
           </Col>
         </Row>

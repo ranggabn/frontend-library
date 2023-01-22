@@ -23,7 +23,12 @@ export default function Home() {
         <div className="bg-index">
           <Row>
             <Col className="row-index">
-              <img src="/images/logo.svg" alt="" height={100} />
+              <img
+                src="/images/online-logo.png"
+                alt=""
+                height={100}
+                style={{ width: "30%" }}
+              />
             </Col>
           </Row>
           <CardComp />

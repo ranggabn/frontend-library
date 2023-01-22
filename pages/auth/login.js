@@ -75,8 +75,8 @@ export default function Login() {
         <img src="/images/login.svg" alt="" height={200} />
       </Col>
       <Col className="col-form-login">
-        <Row>
-          <img src="/images/logo.svg" alt="" height={100} />
+        <Row className="btn-delete">
+          <img src="/images/online-logo.png" alt="" height={100} style={{'width': '60%'}} />
         </Row>
         <Row className="row-form">
           <Col xl={8} md={8} xs={8}>

@@ -75,7 +75,7 @@ export default function Forgot() {
                 marginBottom: "30px",
               }}
             >
-              <img src="/images/logo.svg" alt="" height={100} />
+              <img src="/images/online-logo.png" alt="" height={100} />
             </div>
           </Col>
         </Row>

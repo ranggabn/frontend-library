@@ -13,7 +13,7 @@ export default function NavbarComp({ token, role, id }) {
   return (
     <Navbar bg="dark" expand="lg" variant="dark">
       <Container>
-        <Navbar.Brand href="#">Perpustakaan UB</Navbar.Brand>
+        <Navbar.Brand href="#">Perpustakaan Online</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
           {token && role == "1" ? (

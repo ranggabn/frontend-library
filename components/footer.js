@@ -11,7 +11,7 @@ export default function FooterComp() {
           <div className="row">
             <div className="col-md-3 col-sm-6">
               <h4 className="mb-3 text-center">
-                Perpustakaan Kampus Bhataraja
+                Perpustakaan Online
               </h4>
               <ul className="list-unstyled">
                 <li className="mb-2 mt-2 text-center">
@@ -110,8 +110,7 @@ export default function FooterComp() {
           </div>
           <div className="footer-bottom">
             <p className="text-xs-center">
-              &copy;{new Date().getFullYear()} Perpustakaan Universitas
-              Bhataraja - All Rights Reserved
+              &copy;{new Date().getFullYear()} Perpustakaan Online - All Rights Reserved
             </p>
           </div>
         </div>
